@@ -1,11 +1,26 @@
 <script>
-	export let name;
+  import Header from "./components/Header.svelte";
+  import TableList from "./table/TableList.svelte";
 </script>
 
 <style>
-	h1 {
-		color: purple;
-	}
+  #dashboard {
+    height: calc(100vh - 100px);
+  }
 </style>
 
-<h1>Hello {name}!</h1>
+<Header />
+
+<section id="dashboard">
+  <div class="row-line">
+    <div class="half centralizado">
+		<TableList />
+	</div>
+    <div class="half centralizado">product container</div>
+  </div>
+
+  <div class="row-line">
+    <div class="half">cooking requests container</div>
+    <div class="half">shopping carts container</div>
+  </div>
+</section>
