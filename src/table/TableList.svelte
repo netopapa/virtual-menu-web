@@ -1,3 +1,9 @@
+<script>
+  import * as TableService from "../services/TableService";
+
+  TableService.basic.getAll();
+</script>
+
 <style>
   #table-list {
     width: 60%;
