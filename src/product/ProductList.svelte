@@ -1,24 +1,23 @@
 <script>
   import * as CrudService from "../services/CrudService";
 
-  CrudService.getAll("tables/").then(resp => {
-    console.log('resp');
+  CrudService.getAll("products/").then(resp => {
     console.log(resp);
   });
 </script>
 
 <style>
-  #table-list {
+  #product-list {
     width: 60%;
     margin: 30px 0;
   }
 
-  #table-list .table .cell {
+  #product-list .table .cell {
     width: 33%;
   }
 </style>
 
-<section id="table-list" class="card">
+<section id="product-list" class="card">
   <div class="header space-between">
     <h3>Tables (1)</h3>
     <button class="btn success">

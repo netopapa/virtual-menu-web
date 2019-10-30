@@ -1,6 +1,7 @@
 <script>
   import Header from "./components/Header.svelte";
   import TableList from "./table/TableList.svelte";
+  import ProductList from "./product/ProductList.svelte";
 </script>
 
 <style>
@@ -14,9 +15,11 @@
 <section id="dashboard">
   <div class="row-line">
     <div class="half centralizado">
-		<TableList />
-	</div>
-    <div class="half centralizado">product container</div>
+      <!-- <TableList /> -->
+    </div>
+    <div class="half centralizado">
+      <ProductList />
+    </div>
   </div>
 
   <div class="row-line">

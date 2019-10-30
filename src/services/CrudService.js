@@ -1,20 +1,14 @@
 import * as rest from './RestService';
 
-let mainUrl = '';
-
-export let setEndpoint = (endpoint) => {
-    mainUrl = endpoint;
+export const saveOne = (url, obj) => {
+    return rest.post(rest.baseURL + url, obj);
 };
 
-export const saveOne = (obj) => {
-    return rest.post(rest.baseURL + mainUrl, obj);
+export const getAll = (url) => {
+    return rest.get(rest.baseURL + url);
 };
 
-export const getAll = () => {
-    return rest.get(rest.baseURL + mainUrl);
-};
-
-export const getOne = (id) => {
-    const urlOne = rest.baseURL + mainUrl + id
+export const getOne = (url, id) => {
+    const urlOne = rest.baseURL + url + id
     return rest.get(urlOne);
 };

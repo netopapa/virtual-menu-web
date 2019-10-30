@@ -15,6 +15,7 @@ export const post = (url, data) => {
             return response.json();
         })
         .then((obj) => {
+            console.log('-- response POST:' + url);
             console.table(obj);
             return obj;
         });
@@ -28,12 +29,11 @@ export const get = (url) => {
         cache: 'default'
     };
 
-    fetch(url, options)
+    return fetch(url, options)
         .then((response) => {
             return response.json();
         })
         .then((obj) => {
-            console.table(obj);
             return obj;
         });
 };
