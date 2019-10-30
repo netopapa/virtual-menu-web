@@ -1,9 +1,16 @@
 <script>
   import * as CrudService from "../services/CrudService";
+  import Modal from "../components/Modal.svelte";
 
-  CrudService.getAll("products/").then(resp => {
-    console.log(resp);
-  });
+  let openModal = false;
+
+  const showForm = () => {
+    openModal = true;
+  };
+
+  const hideForm = () => {
+    openModal = false;
+  };
 </script>
 
 <style>
@@ -17,10 +24,18 @@
   }
 </style>
 
+<Modal open={openModal} on:hide={hideForm}>
+  <h3 class="center" slot="title">Título</h3>
+  <div slot="content">
+    <h2>asijaisojoias</h2>
+  </div>
+</Modal>
+
+
 <section id="product-list" class="card">
   <div class="header space-between">
-    <h3>Tables (1)</h3>
-    <button class="btn success">
+    <h3>Produtos (1)</h3>
+    <button class="btn success" on:click={showForm}>
       <i class="fa fa-plus" />
     </button>
   </div>
