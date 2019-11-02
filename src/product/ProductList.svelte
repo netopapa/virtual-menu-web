@@ -1,8 +1,9 @@
 <script>
   import * as CrudService from "../services/CrudService";
   import Modal from "../components/Modal.svelte";
+  import ProductForm from "./ProductForm.svelte";
 
-  let openModal = false;
+  let openModal = true;
 
   const showForm = () => {
     openModal = true;
@@ -27,10 +28,9 @@
 <Modal open={openModal} on:hide={hideForm}>
   <h3 class="center" slot="title">Título</h3>
   <div slot="content">
-    <h2>asijaisojoias</h2>
+    <ProductForm />
   </div>
 </Modal>
-
 
 <section id="product-list" class="card">
   <div class="header space-between">
