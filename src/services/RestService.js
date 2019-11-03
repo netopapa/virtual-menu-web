@@ -57,3 +57,17 @@ export const get = (url) => {
             return obj;
         });
 };
+
+export const remove = (url) => {
+    let options = {
+        method: 'DELETE'
+    };
+
+    return fetch(url, options)
+        .then((response) => {
+            return response;
+        })
+        .then((obj) => {
+            return obj;
+        });
+};

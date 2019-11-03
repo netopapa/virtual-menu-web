@@ -12,18 +12,17 @@
 
 <Header />
 
-<section id="dashboard">
-  <div class="row-line">
-    <div class="half centralizado">
-      <!-- <TableList /> -->
+<section id="dashboard" class="centralizado">
+    <ProductList />
+  <!-- <div class="row-line"> -->
+    <!-- <div class="half centralizado">
+      
     </div>
-    <div class="half centralizado">
-      <ProductList />
-    </div>
-  </div>
+    <div class="half centralizado" />
+  </div> -->
 
-  <div class="row-line">
+  <!-- <div class="row-line">
     <div class="half">cooking requests container</div>
     <div class="half">shopping carts container</div>
-  </div>
+  </div> -->
 </section>

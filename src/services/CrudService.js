@@ -1,6 +1,6 @@
 import * as rest from './RestService';
 
-export const saveOne = (url, obj) => {
+export const save = (url, obj) => {
     return rest.post(rest.baseURL + url, obj);
 };
 
@@ -15,4 +15,9 @@ export const getAll = (url) => {
 export const getOne = (url, id) => {
     const urlOne = rest.baseURL + url + id
     return rest.get(urlOne);
+};
+
+export const remove = (url, id) => {
+    const urlRemove = rest.baseURL + url + id
+    return rest.remove(urlRemove);
 };

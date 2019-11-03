@@ -2,15 +2,20 @@
   import * as CrudService from "../services/CrudService";
   import { createEventDispatcher } from "svelte";
 
+  export let product = { id: 0, name: "", description: "", price: 0 };
   const dispatch = createEventDispatcher();
-  const product = { name: "", description: "", price: 0 };
   let mustDisable = true;
 
-  const save = () => {
-    CrudService.saveOne("products/", product).then(success => {
-      console.table(success);
-      hideForm();
-    });
+  const saveOrUpdate = () => {
+    if (!product.id || product.id == 0) {
+      CrudService.save("products/", product).then(success => {
+        hideForm();
+      });
+    } else {
+      CrudService.update("products/", product).then(success => {
+        hideForm();
+      });
+    }
   };
 
   const verifyFields = target => {
@@ -24,6 +29,7 @@
   };
 
   const hideForm = () => {
+    product = { id: 0, name: "", description: "", price: 0 };
     dispatch("hide");
   };
 </script>
@@ -68,7 +74,7 @@
   }
 </style>
 
-<form on:submit|preventDefault>
+<form on:submit|preventDefault={saveOrUpdate}>
   <div class="row-line">
     <div class="half">
       <div class="input-area">
@@ -101,11 +107,7 @@
 
   <div class="actions row-line">
     <button type="button" class="btn warn" on:click={hideForm}>Cancelar</button>
-    <button
-      type="submit"
-      class="btn success"
-      disabled={mustDisable}
-      on:click={save}>
+    <button type="submit" class="btn success" disabled={mustDisable}>
       Salvar
     </button>
   </div>

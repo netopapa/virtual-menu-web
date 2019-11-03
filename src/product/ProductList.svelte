@@ -4,10 +4,27 @@
   import Modal from "../components/Modal.svelte";
   import ProductForm from "./ProductForm.svelte";
 
-  let openModal = true;
+  let openModal = false;
+  let productToEdit = {};
 
   const showForm = () => {
     openModal = true;
+  };
+
+  const editItem = (obj, ev) => {
+    productToEdit = obj;
+    showForm();
+  };
+
+  const removeItem = (id, ev) => {
+    CrudService.remove("products/", id).then(() => {
+      getProducts();
+    });
+  };
+
+  const createItem = () => {
+    productToEdit = { id: 0, name: "", description: "", price: 0 };
+    showForm();
   };
 
   const hideForm = () => {
@@ -33,23 +50,31 @@
     width: 60%;
     margin: 30px 0;
   }
-  
+
   #product-list .table .cell {
     width: 33%;
+  }
+
+  #product-list .table .list-content {
+    display: contents;
   }
 </style>
 
 <Modal open={openModal} on:hide={hideForm}>
-  <h3 class="center" slot="title">Produto</h3>
+  <h3 class="center" slot="title">
+    {#if !productToEdit.id || productToEdit.id == 0}
+      Create Product
+    {:else}Edit Product{/if}
+  </h3>
   <div slot="content">
-    <ProductForm on:hide={hideForm} />
+    <ProductForm on:hide={hideForm} product={productToEdit} />
   </div>
 </Modal>
 
 <section id="product-list" class="card">
   <div class="header space-between">
     <h3>Produtos ({productList.length})</h3>
-    <button class="btn success" on:click={showForm}>
+    <button class="btn success" on:click={createItem}>
       <i class="fa fa-plus" />
     </button>
   </div>
@@ -63,27 +88,30 @@
       <div class="cell">Actions</div>
     </div>
 
-    {#each productList as product}
-      <!-- content here -->
-      <div class="row">
-        <div class="cell" data-title="name">{product.name}</div>
-        <div class="cell" data-title="description">{product.description}</div>
-        <div class="cell" data-title="price">{product.price}</div>
-        <div class="cell" data-title="actions">
-          <div class="options">
-            <button class="btn info">
-              <i class="fa fa-pencil" />
-            </button>
-            <button class="btn danger">
-              <i class="fa fa-trash" />
-            </button>
+    <div class="list-content">
+      {#each productList as product}
+        <!-- content here -->
+        <div class="row">
+          <div class="cell" data-title="name">{product.name}</div>
+          <div class="cell" data-title="description">{product.description}</div>
+          <div class="cell" data-title="price">{product.price}</div>
+          <div class="cell" data-title="actions">
+            <div class="options">
+              <button class="btn info" on:click={editItem.bind(this, product)}>
+                <i class="fa fa-pencil" />
+              </button>
+              <button
+                class="btn danger"
+                on:click={removeItem.bind(this, product.id)}>
+                <i class="fa fa-trash" />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    {:else}
-      <h5 class="center">No products yet</h5>
-    {/each}
-
+      {:else}
+        <h5 class="center">No products yet</h5>
+      {/each}
+    </div>
   </div>
 
   <!-- <ul>
