@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import * as CrudService from "../services/CrudService";
   import Modal from "../components/Modal.svelte";
   import ProductForm from "./ProductForm.svelte";
@@ -11,7 +12,20 @@
 
   const hideForm = () => {
     openModal = false;
+    getProducts();
   };
+
+  let productList = [];
+
+  const getProducts = () => {
+    CrudService.getAll("products/").then(success => {
+      productList = success;
+    });
+  };
+
+  onMount(() => {
+    getProducts();
+  });
 </script>
 
 <style>
@@ -19,22 +33,22 @@
     width: 60%;
     margin: 30px 0;
   }
-
+  
   #product-list .table .cell {
     width: 33%;
   }
 </style>
 
 <Modal open={openModal} on:hide={hideForm}>
-  <h3 class="center" slot="title">Título</h3>
+  <h3 class="center" slot="title">Produto</h3>
   <div slot="content">
-    <ProductForm on:hide={hideForm}/>
+    <ProductForm on:hide={hideForm} />
   </div>
 </Modal>
 
 <section id="product-list" class="card">
   <div class="header space-between">
-    <h3>Produtos (1)</h3>
+    <h3>Produtos ({productList.length})</h3>
     <button class="btn success" on:click={showForm}>
       <i class="fa fa-plus" />
     </button>
@@ -43,25 +57,32 @@
   <div class="table">
 
     <div class="row header">
-      <div class="cell">Number</div>
-      <div class="cell">Status</div>
+      <div class="cell">Name</div>
+      <div class="cell">Description</div>
+      <div class="cell">Price</div>
       <div class="cell">Actions</div>
     </div>
 
-    <div class="row">
-      <div class="cell" data-title="Full Name">1</div>
-      <div class="cell" data-title="Age">Busy</div>
-      <div class="cell" data-title="Job Title">
-        <div class="options">
-          <button class="btn info">
-            <i class="fa fa-pencil" />
-          </button>
-          <button class="btn danger">
-            <i class="fa fa-trash" />
-          </button>
+    {#each productList as product}
+      <!-- content here -->
+      <div class="row">
+        <div class="cell" data-title="name">{product.name}</div>
+        <div class="cell" data-title="description">{product.description}</div>
+        <div class="cell" data-title="price">{product.price}</div>
+        <div class="cell" data-title="actions">
+          <div class="options">
+            <button class="btn info">
+              <i class="fa fa-pencil" />
+            </button>
+            <button class="btn danger">
+              <i class="fa fa-trash" />
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    {:else}
+      <h5 class="center">No products yet</h5>
+    {/each}
 
   </div>
 
