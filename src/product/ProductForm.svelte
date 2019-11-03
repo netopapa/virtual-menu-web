@@ -1,8 +1,31 @@
 <script>
   import * as CrudService from "../services/CrudService";
+  import { createEventDispatcher } from "svelte";
 
+  const dispatch = createEventDispatcher();
   const product = { name: "", description: "", price: 0 };
-  $: console.log(product.description);
+  let mustDisable = true;
+
+  const save = () => {
+    CrudService.saveOne("products/", product).then(success => {
+      console.table(success);
+      hideForm();
+    });
+  };
+
+  const verifyFields = target => {
+    mustDisable =
+      !product.name ||
+      product.name.length < 1 ||
+      !product.description ||
+      product.description.length < 1 ||
+      !product.price ||
+      product.price < 0.1;
+  };
+
+  const hideForm = () => {
+    dispatch("hide");
+  };
 </script>
 
 <style>
@@ -33,6 +56,16 @@
     margin: 10px auto;
     height: 25px;
   }
+
+  form .actions {
+    margin-top: 25px;
+    justify-content: space-around;
+  }
+
+  form .actions button {
+    padding: 5px 10px;
+    text-transform: uppercase;
+  }
 </style>
 
 <form on:submit|preventDefault>
@@ -40,19 +73,41 @@
     <div class="half">
       <div class="input-area">
         <label>Nome:</label>
-        <input type="text" bind:value={product.name} />
+        <input
+          type="text"
+          bind:value={product.name}
+          on:keydown={verifyFields}
+          required />
       </div>
     </div>
     <div class="half">
       <div class="input-area">
         <label>Preço:</label>
-        <input type="number" bind:value={product.price} />
+        <input
+          type="number"
+          bind:value={product.price}
+          on:keydown={verifyFields}
+          required />
       </div>
     </div>
   </div>
   <div class="input-area">
     <label>Descrição:</label>
-    <textarea bind:value={product.description} />
+    <textarea
+      bind:value={product.description}
+      on:keydown={verifyFields}
+      required />
+  </div>
+
+  <div class="actions row-line">
+    <button type="button" class="btn warn" on:click={hideForm}>Cancelar</button>
+    <button
+      type="submit"
+      class="btn success"
+      disabled={mustDisable}
+      on:click={save}>
+      Salvar
+    </button>
   </div>
 
 </form>

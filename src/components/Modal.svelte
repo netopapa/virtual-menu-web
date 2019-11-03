@@ -73,7 +73,7 @@
     <div class="card">
       <div class="card-header">
         <button on:click={hideForm} class="btn-close">
-          <i class="fa fa-close"></i>
+          <i class="fa fa-close" />
         </button>
         <slot name="title" />
       </div>

@@ -28,7 +28,7 @@
 <Modal open={openModal} on:hide={hideForm}>
   <h3 class="center" slot="title">Título</h3>
   <div slot="content">
-    <ProductForm />
+    <ProductForm on:hide={hideForm}/>
   </div>
 </Modal>
 

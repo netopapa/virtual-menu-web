@@ -71,6 +71,10 @@ ul {
 	background-color: transparent;
 }
 
+.btn:disabled {
+	filter: grayscale(100%);
+}
+
 .btn.danger {
 	color: #e67a7a;
 	border-color: #e67a7a;
