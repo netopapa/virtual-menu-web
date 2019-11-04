@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:8080/'
+const apiUrl = 'https://virtual-menu-server.herokuapp.com/'
 export let baseURL = apiUrl;
 
 export const post = (url, data) => {
