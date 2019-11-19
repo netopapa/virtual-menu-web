@@ -3020,21 +3020,21 @@ var app = (function () {
     			attr_dev(a0, "href", "javascript:void(0)");
     			attr_dev(a0, "class", "svelte-6mntz4");
     			toggle_class(a0, "active", ctx.page === 'product');
-    			add_location(a0, file$7, 62, 6, 1136);
+    			add_location(a0, file$7, 62, 6, 1121);
     			attr_dev(a1, "href", "javascript:void(0)");
     			attr_dev(a1, "class", "svelte-6mntz4");
     			toggle_class(a1, "active", ctx.page === 'table');
-    			add_location(a1, file$7, 70, 6, 1316);
+    			add_location(a1, file$7, 70, 6, 1301);
     			attr_dev(nav, "id", "sidebar");
     			attr_dev(nav, "class", "svelte-6mntz4");
-    			add_location(nav, file$7, 61, 4, 1111);
+    			add_location(nav, file$7, 61, 4, 1096);
     			attr_dev(h4, "class", "center svelte-6mntz4");
-    			add_location(h4, file$7, 81, 6, 1546);
+    			add_location(h4, file$7, 81, 6, 1531);
     			attr_dev(div, "class", "main-content centralizado svelte-6mntz4");
-    			add_location(div, file$7, 80, 4, 1500);
+    			add_location(div, file$7, 80, 4, 1485);
     			attr_dev(section, "id", "dashboard");
     			attr_dev(section, "class", "svelte-6mntz4");
-    			add_location(section, file$7, 60, 2, 1082);
+    			add_location(section, file$7, 60, 2, 1067);
 
     			dispose = [
     				listen_dev(a0, "click", ctx.click_handler),
@@ -3300,7 +3300,7 @@ var app = (function () {
       let isMobile = false;
       let page = "product";
 
-      if (window.location.pathname === "/mobile") {
+      if (window.innerWidth < 500) {
         $$invalidate('isMobile', isMobile = true);
       }
 

@@ -6,7 +6,7 @@
   let isMobile = false;
   let page = "product";
 
-  if (window.location.pathname === "/mobile") {
+  if (window.innerWidth < 500) {
     isMobile = true;
   }
 
