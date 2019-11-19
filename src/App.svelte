@@ -1,5 +1,4 @@
 <script>
-  import Header from "./components/Header.svelte";
   import TableList from "./table/TableList.svelte";
   import ProductList from "./product/ProductList.svelte";
 
