@@ -94,7 +94,7 @@
         <div class="row">
           <div class="cell" data-title="name">{product.name}</div>
           <div class="cell" data-title="description">{product.description}</div>
-          <div class="cell" data-title="price">{product.price}</div>
+          <div class="cell" data-title="price">R${product.price}</div>
           <div class="cell" data-title="actions">
             <div class="options">
               <button class="btn info" on:click={editItem.bind(this, product)}>

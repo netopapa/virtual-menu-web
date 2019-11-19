@@ -1,8 +1,14 @@
 <script>
   import TableList from "./table/TableList.svelte";
   import ProductList from "./product/ProductList.svelte";
+  import Mobile from "./mobile/Mobile.svelte";
 
+  let isMobile = false;
   let page = "product";
+
+  if (window.location.pathname === "/mobile") {
+    isMobile = true;
+  }
 
   function toPage(pageName) {
     page = pageName;
@@ -49,32 +55,36 @@
   }
 </style>
 
-<section id="dashboard">
-  <nav id="sidebar">
-    <a
-      href="javascript:void(0)"
-      class:active={page === 'product'}
-      on:click={() => {
-        toPage('product');
-      }}>
-      Products
-    </a>
-    <a
-      href="javascript:void(0)"
-      class:active={page === 'table'}
-      on:click={() => {
-        toPage('table');
-      }}>
-      Tables
-    </a>
-  </nav>
+{#if isMobile}
+  <Mobile />
+{:else}
+  <section id="dashboard">
+    <nav id="sidebar">
+      <a
+        href="javascript:void(0)"
+        class:active={page === 'product'}
+        on:click={() => {
+          toPage('product');
+        }}>
+        Products
+      </a>
+      <a
+        href="javascript:void(0)"
+        class:active={page === 'table'}
+        on:click={() => {
+          toPage('table');
+        }}>
+        Tables
+      </a>
+    </nav>
 
-  <div class="main-content centralizado">
-    <h4 class="center">VIRTUAL MENU</h4>
-    {#if page === 'product'}
-      <ProductList />
-    {:else}
-      <TableList />
-    {/if}
-  </div>
-</section>
+    <div class="main-content centralizado">
+      <h4 class="center">VIRTUAL MENU</h4>
+      {#if page === 'product'}
+        <ProductList />
+      {:else}
+        <TableList />
+      {/if}
+    </div>
+  </section>
+{/if}
