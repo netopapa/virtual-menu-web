@@ -13,7 +13,7 @@
 <Header />
 
 <section id="dashboard" class="centralizado">
-    <ProductList />
+    <TableList />
   <!-- <div class="row-line"> -->
     <!-- <div class="half centralizado">
       

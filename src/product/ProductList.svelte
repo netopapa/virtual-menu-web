@@ -114,17 +114,4 @@
     </div>
   </div>
 
-  <!-- <ul>
-    <li class="space-between">
-      <sub>Hamburguer</sub>
-      <div class="options">
-        <button class="btn info">
-          <i class="fa fa-pencil" />
-        </button>
-        <button class="btn danger">
-          <i class="fa fa-trash" />
-        </button>
-      </div>
-    </li>
-  </ul> -->
 </section>
