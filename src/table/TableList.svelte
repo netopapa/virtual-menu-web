@@ -81,7 +81,7 @@
 
   <div class="table">
 
-    <div class="row header">
+    <div class="row header" style="display: flex;">
       <div class="cell">Number</div>
       <div class="cell">Status</div>
       <div class="cell">Actions</div>
@@ -90,7 +90,7 @@
     <div class="list-content">
       {#each tableList as table}
         <!-- content here -->
-        <div class="row">
+        <div class="row" style="display: flex;">
           <div class="cell" data-title="name">{table.number}</div>
           <div class="cell" data-title="description">
             {table.busy ? 'Busy' : 'Free'}

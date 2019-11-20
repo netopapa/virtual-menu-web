@@ -1,6 +1,7 @@
 <script>
   import TableList from "./table/TableList.svelte";
   import ProductList from "./product/ProductList.svelte";
+  import Cooking from "./cooking-request/Cooking.svelte";
   import Mobile from "./mobile/Mobile.svelte";
 
   let isMobile = false;
@@ -76,14 +77,24 @@
         }}>
         Tables
       </a>
+      <a
+        href="javascript:void(0)"
+        class:active={page === 'cooking'}
+        on:click={() => {
+          toPage('cooking');
+        }}>
+        Cooking
+      </a>
     </nav>
 
     <div class="main-content centralizado">
       <h4 class="center">VIRTUAL MENU</h4>
       {#if page === 'product'}
         <ProductList />
-      {:else}
+      {:else if page === 'table'}
         <TableList />
+      {:else}
+        <Cooking />
       {/if}
     </div>
   </section>
